@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import ttk
 from PIL import Image,ImageTk
 import datetime
-from tkinter.simpledialog import askinteger
+from tkinter.simpledialog import askinteger, askstring
 from messageWindow import MapDisplay
 
 
@@ -16,12 +16,17 @@ class Window(tk.Tk):
         # add menubar that contains a menu
         self.menubar = tk.Menu(self)
         self.config(menu=self.menubar)
-        # add command menu in menubar        
-        self.command_menu = tk.Menu(self.menubar)
-        self.command_menu.add_command(label="設定", command=self.menu_setting_click)
-        self.command_menu.add_command(label="離開", command=self.destroy)
-        self.menubar.add_cascade(label="File", menu=self.command_menu)
-
+        
+        # add setting menu in menubar        
+        self.setting_menu = tk.Menu(self.menubar)
+        self.setting_menu.add_command(label="設定", command=self.menu_setting_click)
+        self.setting_menu.add_command(label="離開", command=self.destroy)
+        self.menubar.add_cascade(label="File", menu=self.setting_menu)
+        #add search menu in menubar
+        self.search_menu = tk.Menu(self.menubar)
+        self.search_menu.add_command(label="搜尋站點", command=self.menu_search_click)
+        self.menubar.add_cascade(label="Search", menu=self.search_menu)
+        
         
         # main Frame
         mainFrame = ttk.Frame(self)
@@ -172,6 +177,10 @@ class Window(tk.Tk):
         sbi_numbers = retVal
         bemp_numbers = retVal       
 
+    def menu_search_click(self):
+        searchStr = askstring
+        pass
+
 
     def radio_Event(self):
         #get current datetime
@@ -180,8 +189,7 @@ class Window(tk.Tk):
         nowString = now.strftime("%Y-%m-%d %H:%M:%S")
 
         # Clear tree view
-        for item in self.tree.get_children():
-            self.tree.delete(item)
+    
 
         for item in self.sbi_tree.get_children():
             self.sbi_tree.delete(item)
