@@ -25,3 +25,7 @@
   7. 搜尋後結果
 
 ![image](images/youbike_search_3.jpg)
+
+  8. 點選站點可以秀出地圖
+
+![image](images/youbike_map.jpg)
