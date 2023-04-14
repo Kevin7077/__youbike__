@@ -22,6 +22,6 @@
 
 ![image](images/youbike_search_2.jpg)
 
-  7. n. 搜尋後結果
-  
+  7. 搜尋後結果
+
 ![image](images/youbike_search_3.jpg)
