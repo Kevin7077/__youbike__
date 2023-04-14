@@ -24,7 +24,7 @@ class Window(tk.Tk):
         self.menubar.add_cascade(label="File", menu=self.setting_menu)
         #add search menu in menubar
         self.search_menu = tk.Menu(self.menubar)
-        self.search_menu.add_command(label="搜尋站點", command=self.menu_search_click)
+        self.search_menu.add_command(label="搜尋", command=self.menu_search_click)
         self.menubar.add_cascade(label="Search", menu=self.search_menu)
         
         
@@ -168,18 +168,23 @@ class Window(tk.Tk):
         #顯示地圖window
         mapDisplay = MapDisplay(self,selectd_data)
 
+    #create setting menu for input data
     def menu_setting_click(self):
         global sbi_numbers,bemp_numbers
         retVal = askinteger(f"目前設定不足數量:{sbi_numbers}",
                     "請輸入不足可借可還數量0~5",
                     minvalue=0, maxvalue=5)
-        print(retVal)
         sbi_numbers = retVal
         bemp_numbers = retVal       
 
+    #create search menu for input data
     def menu_search_click(self):
-        searchStr = askstring
-        pass
+        searchStr = askstring("查詢的站點名","請輸入欲查詢的站點名")
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+        for item in self.area_data:
+            if searchStr in item['sna'] or searchStr in item['ar']:
+                self.tree.insert('',tk.END,values=[item['sna'][11:],item['mday'],item['tot'],item['sbi'],item['bemp'],item['ar'],item['act']],tags=item['sna'])
 
 
     def radio_Event(self):
