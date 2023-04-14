@@ -18,7 +18,7 @@
 
 ![image](images/youbike_search_1.jpg)
 
-  6. 設定內可以搜尋關鍵字查詢站點
+  6. 搜尋內可以打關鍵字查詢站點
 
 ![image](images/youbike_search_2.jpg)
 
