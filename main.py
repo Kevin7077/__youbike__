@@ -72,7 +72,6 @@ class Window(tk.Tk):
         self.sbi_tree.pack(side=tk.LEFT)
         self.sbi_warning_data = datasource.filter_sbi_warning_data(self.area_data,sbi_numbers)
         sbi_sites_numbers = len(self.sbi_warning_data)
-        print(sbi_sites_numbers)
         self.sbi_warningFrame.configure(text=f"可借不足站點數:{sbi_sites_numbers}")
         for item in self.sbi_warning_data:
             self.sbi_tree.insert('',tk.END,values=[item['sna'][11:],item['sbi'],item['bemp']])
@@ -162,11 +161,11 @@ class Window(tk.Tk):
         siteName = itemDic['tags'][0]
         for item in self.area_data:
             if siteName == item['sna']:
-                selectd_data = item
+                select_data = item
                 break
         
         #顯示地圖window
-        mapDisplay = MapDisplay(self,selectd_data)
+        mapDisplay = MapDisplay(self,select_data)
 
     #create setting menu for input data
     def menu_setting_click(self):
@@ -194,11 +193,10 @@ class Window(tk.Tk):
         nowString = now.strftime("%Y-%m-%d %H:%M:%S")
 
         # Clear tree view
-    
-
+        for item in self.tree.get_children():
+            self.tree.delete(item)      
         for item in self.sbi_tree.get_children():
             self.sbi_tree.delete(item)
-
         for item in self.bemp_tree.get_children():
             self.bemp_tree.delete(item)
 
